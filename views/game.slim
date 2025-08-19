@@ -1,3 +1,5 @@
 h1 Vilken elev är detta?
-h1 #{correct_student}
-h2 #{options}
+h1 #{correct_student["bild"]}
+
+- options.each do |people|
+    button #{people["namn"]}

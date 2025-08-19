@@ -1,3 +1,4 @@
+
 require "slim"
 require "sinatra"
 require "sqlite3"
@@ -6,6 +7,11 @@ require 'sinatra/flash'
 require_relative 'model.rb'
 
 
+include Model
+
+before do 
+    db = database()
+end
 
 error 404 do
     flash[:notice] = "Route does not exist"

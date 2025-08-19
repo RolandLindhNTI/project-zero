@@ -1,8 +1,10 @@
-    module Model    
-    require 'sinatra'
-    require 'sinatra/reloader'
-    require 'slim'
-    require 'sqlite3'
+module Model  
+
+require 'sinatra'
+require 'sinatra/reloader'
+require 'slim'
+require 'sqlite3'
+require 'bcrypt'
 
     
     

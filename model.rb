@@ -5,12 +5,13 @@ module Model
     require 'sqlite3'
     require 'bcrypt'
 
-        
-        
-        
-    def database(db2)
-            db = SQLite3::Database.new(db2)
-            db.results_as_hash = true
-            return db
+    
+    
+    
+    def database(db)
+        db = SQLite3::Database.new(db)
+        db.results_as_hash = true
+        return db
     end
+
 end

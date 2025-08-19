@@ -2,5 +2,6 @@ h1 Vilken elev är detta?
 img src="/img/#{correct_student["bild"]}" alt=""
 
 form action="/answer" method="post"
+    input type="hidden" value="#{correct_student["id"]}" name="correct_name"
     - options.each do |people|
-        button type="submit" value="#{people["id"]}" #{people["namn"]} 
+        button type="submit" name="id" value="#{people["id"]}" #{people["namn"]}

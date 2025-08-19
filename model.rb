@@ -14,5 +14,9 @@ module Model
         return db
     end
 
+    def post_answer(id)
+        redirect('/game')
+    end
+
 
 end

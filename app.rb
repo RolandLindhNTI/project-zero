@@ -32,7 +32,7 @@ get '/game' do
   slim :game, locals:{correct_student: correct_student, options: options}
 end
 
-post 'answer' do
-  id = params[:id]
-  redirect('/game')
+post '/answer' do
+    id = params[:id]
+    redirect('/game')
 end

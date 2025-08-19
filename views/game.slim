@@ -3,4 +3,4 @@ img src="/img/#{correct_student["bild"]}" alt=""
 
 form action="/answer" method="post"
     - options.each do |people|
-        button name="#{people["id"]}" #{people["namn"]} 
+        button type="submit" value="#{people["id"]}" #{people["namn"]} 

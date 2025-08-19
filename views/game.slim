@@ -13,12 +13,11 @@ html lang="en"
 
        
             
-            h1 Vilken elev är detta?
-            h2 "#{session[:score]}/#{session[:attempts]}"
+            h2 "#{:score}/#{:attempts}"
             img src="/img/#{correct_student["bild"]}" alt=""
 
 
             form action="/answer" method="post"
-                input type="hidden" value="#{correct_student["id"]}" name="correct_name"
+                input type="hidden" value="#{correct_student["id"]}" name="correct_id"
                 - options.each do |people|
                     button type="submit" name="id" value="#{people["id"]}" #{people["namn"]}

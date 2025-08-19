@@ -32,7 +32,21 @@ get '/game' do
 end
 
 post '/answer' do
+    students = @db.execute("SELECT * from TE4")
+    session[:attempts] ||= 0
+    session[:score] ||= 0
     id = params[:id]
-    correct_name = params[:correct_name]
+    correct_id = params[:correct_id]
+    while session[:attempts] >= students.length
+
+        if correct_id == id 
+            session[:score] += 1
+        else
+            flash[:notice] = "wrong answer!"
+        end
+
+    end
+    session[:attempts] += 1
+    slim :game, locals:{score: session[:score], attempts: session[:attempts]}
     redirect('/game')
 end

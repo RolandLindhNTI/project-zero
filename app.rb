@@ -8,7 +8,7 @@ require_relative 'model.rb'
 
 
 before do
-    @db = database("db/projectzerodatabase.db")
+    @db = database()
 end
 
 error 404 do

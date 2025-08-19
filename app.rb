@@ -1,4 +1,3 @@
-
 require "slim"
 require "sinatra"
 require "sqlite3"

@@ -14,3 +14,4 @@ end
 get '/' do
     slim(:index)
 end
+

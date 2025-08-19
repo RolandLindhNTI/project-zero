@@ -1,4 +1,3 @@
-
 require "slim"
 require "sinatra"
 require "sqlite3"
@@ -33,7 +32,23 @@ get '/game' do
 end
 
 post '/answer' do
-    id = params[:id]
-    correct_name = params[:correct_name]
+    students = @db.execute("SELECT * from TE4")
+    session[:attempts] ||= 0
+    session[:score] ||= 0
+    id = params[:id].to_i
+    correct_id = params[:correct_id].to_i
+
+
+
+    if students.length >= session[:attempts]
+
+        if correct_id == id 
+            session[:score] += 1
+        else
+            flash[:notice] = "wrong answer!"
+        end
+    end
+    session[:attempts] += 1
+    slim :game, locals:{score: session[:score], attempts: session[:attempts]}
     redirect('/game')
 end

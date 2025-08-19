@@ -13,14 +13,16 @@ html lang="en"
             p Logga in!
 
        
-            
+             h2 "#{:score}/#{:attempts}"
         section id="game_holder"
             h3 Vilken elev är detta?
             img src="/img/#{correct_student["bild"]}" alt=""
 
             section id="button_holder"
                 form id="buttons" action="/answer" method="post"
-                    input type="hidden" value="#{correct_student["id"]}" name="correct_name"
+                    input type="hidden" value="#{correct_student["id"]}" name="correct_id"
                     - options.each do |people|
                         button type="submit" name="id" value="#{people["id"]}" #{people["namn"]}
                 
+
+

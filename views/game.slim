@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <!DOCTYPE html>
 html lang="en"
     head
@@ -21,3 +22,16 @@ html lang="en"
                 input type="hidden" value="#{correct_student["id"]}" name="correct_name"
                 - options.each do |people|
                     button type="submit" name="id" value="#{people["id"]}" #{people["namn"]}
+=======
+h1 Vilken elev är detta?
+h2 "#{session[:score]}/#{session[:attempts]}"
+img src="/img/#{correct_student["bild"]}" alt=""
+
+
+
+
+form action="/answer" method="post"
+    input type="hidden" value="#{correct_student["id"]}" name="correct_id"
+    - options.each do |people|
+        button type="submit" name="id" value="#{people["id"]}" #{people["namn"]}
+>>>>>>> Stashed changes

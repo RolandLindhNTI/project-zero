@@ -22,3 +22,11 @@ get('/') do
     slim(:index)
 end
 
+get '/game' do
+  students = DB.execute("SELECT * from TE4")
+
+  correct_student = students.order("RANDOM()").first
+  incorrect_students = (students - [correct_student]).sample(2)
+  options = ([correct_student] + incorrect_students).shuffle
+  slim :game, locals:{student: student, options: options}
+end

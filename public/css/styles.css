@@ -10,8 +10,8 @@ button {
 }
 
 img {
-   
-    max-width: 40%;
+    max-height: 20%;
+    max-width: 20%;
 
 }
 
@@ -23,14 +23,33 @@ body {
 }
 
 header {
+    flex-direction: row;
+    margin: 0px;
+    padding: 8px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: column;
+
     background-color: rgb(63, 63, 63);
     color: white;
 }
 
+h1 
+{
+
+    padding: 0px;
+    margin:  5px;
+}
+
+#game_holder {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background-color: rgb(255, 255, 255);
+    border-radius: 30px;
+    margin: 20px;
+}
 
 #picture_holder {
     display: flex;

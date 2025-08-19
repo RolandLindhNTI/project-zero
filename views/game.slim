@@ -1,7 +1,23 @@
-h1 Vilken elev är detta?
-img src="/img/#{correct_student["bild"]}" alt=""
+<!DOCTYPE html>
+html lang="en"
+    head
+        meta charset="UTF-8"
+        meta name="viewport" content="width=device-width, initial-scale=1.0"
+        title Bob 
+        link rel="stylesheet" href="css/styles.css"
+    body
+        header
+            h1 TE4-Memory!
+            p Vem är vem?
+            p Logga in!
 
-form action="/answer" method="post"
-    input type="hidden" value="#{correct_student["id"]}" name="correct_name"
-    - options.each do |people|
-        button type="submit" name="id" value="#{people["id"]}" #{people["namn"]}
+       
+            
+        section id="game_holder"
+            h1 Vilken elev är detta?
+            img src="/img/#{correct_student["bild"]}" alt=""
+
+            form action="/answer" method="post"
+                input type="hidden" value="#{correct_student["id"]}" name="correct_name"
+                - options.each do |people|
+                    button type="submit" name="id" value="#{people["id"]}" #{people["namn"]}

@@ -12,5 +12,5 @@ error 404 do
 end
 
 get '/' do
-    #slim :homepage
+    slim(:index)
 end

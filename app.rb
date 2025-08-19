@@ -34,5 +34,6 @@ end
 
 post '/answer' do
     id = params[:id]
+    correct_name = params[:correct_name]
     redirect('/game')
 end

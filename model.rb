@@ -8,9 +8,11 @@ module Model
     
     
     
-    def database(db)
-        db = SQLite3::Database.new(db)
+    def database()
+        db = SQLite3::Database.new('db/projectzerodatabase.db')
         db.results_as_hash = true
         return db
     end
+
+
 end

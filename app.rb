@@ -5,10 +5,11 @@ require "sqlite3"
 require "sinatra/reloader"
 require 'sinatra/flash' 
 require_relative 'model.rb'
+
 include Model
 
 before do
-    @db = database("db/projectzerodatabase.db")
+    @db = database()
 end
 
 error 404 do

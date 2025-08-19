@@ -1,5 +1,6 @@
 h1 Vilken elev är detta?
 img src="/img/#{correct_student["bild"]}" alt=""
 
-- options.each do |people|
-    button #{people["namn"]}
+form action="/answer" method="post"
+    - options.each do |people|
+        button name="#{people["id"]}" #{people["namn"]} 

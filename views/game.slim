@@ -7,7 +7,8 @@ html lang="en"
         link rel="stylesheet" href="css/styles.css"
     body
         header
-            h1 TE4-Memory!
+            a href="http://localhost:4567" 
+                h1 TE4-Memory!
             p Vem är vem?
             p Logga in!
             - puts session[:score]
@@ -16,10 +17,19 @@ html lang="en"
             - puts @score
             - puts @attempts
             h2 "#{@score} / #{@attempts}"
+
+       
+             
+        section id="game_holder"
+            h3 Vilken elev är detta?
             img src="/img/#{correct_student["bild"]}" alt=""
 
+            section id="button_holder"
+                form id="buttons" action="/answer" method="post"
+                    input type="hidden" value="#{correct_student["id"]}" name="correct_id"
+                    - options.each do |people|
+                        button type="submit" name="id" value="#{people["id"]}" #{people["namn"]}
+                
 
-            form action="/answer" method="post"
-                input type="hidden" value="#{correct_student["id"]}" name="correct_id"
-                - options.each do |people|
-                    button type="submit" name="id" value="#{people["id"]}" #{people["namn"]}
+
+        h2 "#{:score}/#{:attempts}"

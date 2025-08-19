@@ -7,17 +7,20 @@ html lang="en"
         link rel="stylesheet" href="css/styles.css"
     body
         header
-            h1 TE4-Memory!
+            a href="http://localhost:4567" 
+                h1 TE4-Memory!
             p Vem är vem?
             p Logga in!
 
        
             
         section id="game_holder"
-            h1 Vilken elev är detta?
+            h3 Vilken elev är detta?
             img src="/img/#{correct_student["bild"]}" alt=""
 
-            form action="/answer" method="post"
-                input type="hidden" value="#{correct_student["id"]}" name="correct_name"
-                - options.each do |people|
-                    button type="submit" name="id" value="#{people["id"]}" #{people["namn"]}
+            section id="button_holder"
+                form id="buttons" action="/answer" method="post"
+                    input type="hidden" value="#{correct_student["id"]}" name="correct_name"
+                    - options.each do |people|
+                        button type="submit" name="id" value="#{people["id"]}" #{people["namn"]}
+                

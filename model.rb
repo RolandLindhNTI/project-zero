@@ -13,5 +13,4 @@ module Model
         db.results_as_hash = true
         return db
     end
-
 end

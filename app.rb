@@ -7,7 +7,7 @@ require_relative 'model.rb'
 
 
 before do
-    db = database()
+    @db = database("db/projectzerodatabase.db")
 end
 
 error 404 do
@@ -16,6 +16,7 @@ error 404 do
 end
 
 get('/') do
+    @result = @db.execute("SELECT * FROM TE4")
     slim(:index)
 end
 

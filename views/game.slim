@@ -9,14 +9,17 @@ html lang="en"
         header
             a href="http://localhost:4567" 
                 h1 TE4-Memory!
-            h2 #{@score} / #{@attempts}
+            
             p Logga in!
             
 
        
              
         section id="game_holder"
-            h3 Vilken elev är detta?
+            section id="game_info"
+                h2 Vem är vem?
+                h2 #{@score} / #{@attempts} 
+           
             img src="/img/#{correct_student["bild"]}" alt=""
 
             section id="button_holder"

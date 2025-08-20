@@ -43,32 +43,35 @@ get '/game' do
 end
 
 post '/answer' do
+    if session[:time] == nil
+      session[:time] = Time.now.to_i
+    end
     students = @db.execute("SELECT * from TE4")
     id = params[:id].to_i
     correct_id = params[:correct_id].to_i
-    session[:time] = Time.now.to_i
     if session[:attempts].nil? && session[:score].nil?
         session[:attempts] = students.length
+        session[:attempts_real] = 0
         session[:score] = 0
     end
-    if students.length >= session[:attempts]
-        if correct_id == id 
-          if session[:score] < session[:attempts]
-            session[:score] += 1
-            puts "#{session[:time]}" + "TIME TIME"
-          end
+        if students.length >= session[:attempts_real]
+            if correct_id == id 
+                if  session[:score] < session[:attempts]
+                    session[:score] += 1
+                end
+            end
         end
-    end
     if session[:score] >= session[:attempts]
+
       session[:time] = Time.now.to_i - session[:time]
-      redirect '/results'
+
+      redirect('/results')
     end
     redirect('/game')
 end
 
 get '/results' do
-  puts "#{session[:time]}" + "TIME TIME"
-  @time = session[:time]
+  @time = session[:time].to_i
   @attempts = session[:attempts]
   @score = session[:score]
   slim :results

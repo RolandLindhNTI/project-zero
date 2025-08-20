@@ -1,2 +1,37 @@
-h1 Din poäng är #{@score} av #{@attempts}
-h2 tid #{@time}
+<!DOCTYPE html>
+html lang="en"
+    head
+        meta charset="UTF-8"
+        meta name="viewport" content="width=device-width, initial-scale=1.0"
+        title project-zero
+        link rel="stylesheet" href="css/styles.css"
+    body
+        header
+            a href="http://localhost:4567" 
+                h1 TE4-Memory!
+            
+            p Logga in!
+            
+
+       
+             
+        section id="game_holder"
+            section id="game_info"
+                h1 Du fick #{@score} av #{@attempts} poäng!
+                h4 Din tid: #{@time} sekunder
+
+           
+            button id="restart_button"
+                a href="http://localhost:4567/restart" Spela igen!
+
+            
+                
+
+
+            
+
+
+
+
+
+

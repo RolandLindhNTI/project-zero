@@ -12,11 +12,13 @@ include Model
 
 configure do
     enable :sessions
+
 end
 
 
 before do
     @db = database()
+    @db_copy = database_copy()
 end
 
 error 404 do
@@ -30,8 +32,6 @@ get('/') do
 end
 
 get '/game' do
-    puts session[:attempts]
-    puts session[:score]
   students = @db.execute("SELECT * from TE4")
 
   correct_student = students.shuffle.first
@@ -65,7 +65,6 @@ post '/answer' do
         end
     session[:attempts_real] += 1
     if students.length == session[:attempts_real]
-        puts "#{session[:time]}" + "TIME TIME"
 
         session[:time] = Time.now.to_i - session[:time]
 
@@ -79,4 +78,9 @@ get '/results' do
   @attempts = session[:attempts]
   @score = session[:score]
   slim :results
+end
+
+get '/restart' do
+  session.clear
+  redirect '/game'
 end

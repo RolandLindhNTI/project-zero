@@ -47,19 +47,13 @@ post '/answer' do
     id = params[:id].to_i
     correct_id = params[:correct_id].to_i
     if session[:attempts].nil? && session[:score].nil?
-        session[:attempts] = 0
+        session[:attempts] = students.length
         session[:score] = 0
     end
     if students.length >= session[:attempts]
         if correct_id == id 
             session[:score] += 1
-            p session[:score]
         end
-        p session[:score]
     end
-    p "end of line"
-    session[:attempts] += 1
-    p "session attempts är"
-    p session[:attempts]
     redirect('/game')
 end

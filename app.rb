@@ -11,8 +11,7 @@ include Model
 
 
 configure do
-    enable :sessions
-
+  enable :sessions
 end
 
 
@@ -26,7 +25,9 @@ error 404 do
 end
 
 get('/') do
-    slim(:index)
+  @db.execute("DELETE FROM game_class")
+  @db.execute("INSERT INTO game_class SELECT * FROM TE4")
+  slim(:index)
 end
 
 get '/game' do
@@ -84,6 +85,5 @@ end
 
 get '/restart' do
   session.clear
-  @db.execute("INSERT INTO game_class SELECT * FROM TE4")
-  redirect '/game'
+  redirect '/'
 end

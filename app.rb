@@ -12,8 +12,6 @@ include Model
 
 configure do
     enable :sessions
-    set :session_secret, "supersecret"
-
 end
 
 
@@ -54,15 +52,14 @@ post '/answer' do
     end
     if students.length >= session[:attempts]
         if correct_id == id 
-            p session[:score]
-            session[:score] = 150
+            session[:score] += 1
             p session[:score]
         end
         p session[:score]
     end
     p "end of line"
-    p session[:attempts]
-    session[:attempts] = 100
+    session[:attempts] += 1
+    p "session attempts är"
     p session[:attempts]
     redirect('/game')
 end

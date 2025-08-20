@@ -62,15 +62,13 @@ post '/answer' do
                 end
             end
         end
-    end
     if session[:score] >= session[:attempts]
-          puts "#{session[:time]}" + "TIME TIME"
+        puts "#{session[:time]}" + "TIME TIME"
 
       session[:time] = Time.now.to_i - session[:time]
-        puts "#{session[:time]}" + "TIME TIME 2"
+      puts "#{session[:time]}" + "TIME TIME 2"
 
       redirect '/results'
-      redirect('/results')
     end
     redirect('/game')
 end

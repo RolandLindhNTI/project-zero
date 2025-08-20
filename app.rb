@@ -49,19 +49,23 @@ post '/answer' do
     session[:time] = Time.now.to_i
     if session[:attempts].nil? && session[:score].nil?
         session[:attempts] = students.length
+        session[:attempts_real] = 0
         session[:score] = 0
     end
-    if students.length >= session[:attempts]
-        if correct_id == id 
-          if session[:score] < session[:attempts]
-            session[:score] += 1
-            puts "#{session[:time]}" + "TIME TIME"
-          end
+        if students.length >= session[:attempts_real]
+            if correct_id == id 
+                if  session[:score] < session[:attempts]
+                    session[:score] += 1
+                    puts "#{session[:time]}" + "TIME TIME"
+                end
+            end
         end
-    end
-    if session[:score] >= session[:attempts]
+    session[:attempts_real] += 1
+    if students.length == session[:attempts_real]
+        puts students.length
+        puts session[:attempts_real]
       session[:time] = Time.now.to_i - session[:time]
-      redirect '/results'
+      redirect('/results')
     end
     redirect('/game')
 end

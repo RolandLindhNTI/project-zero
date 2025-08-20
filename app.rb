@@ -65,7 +65,7 @@ post '/answer' do
 
       session[:time] = Time.now.to_i - session[:time]
 
-      redirect '/results'
+      redirect('/results')
     end
     redirect('/game')
 end

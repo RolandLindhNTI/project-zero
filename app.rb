@@ -70,6 +70,7 @@ post '/answer' do
         puts "#{session[:time]}" + "TIME TIME 2"
 
       redirect '/results'
+      redirect('/results')
     end
     redirect('/game')
 end

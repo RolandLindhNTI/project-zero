@@ -35,7 +35,6 @@ get '/game' do
   students = @db.execute("SELECT * from TE4")
 
   correct_student = students.shuffle.first
-  puts correct_student
   incorrect_students = (students - [correct_student]).sample(2)
   options = ([correct_student] + incorrect_students).shuffle
     @attempts = session[:attempts]
@@ -68,7 +67,7 @@ post '/answer' do
     if students.length == session[:attempts_real]
         puts "#{session[:time]}" + "TIME TIME"
 
-      session[:time] = Time.now.to_i - session[:time]
+        session[:time] = Time.now.to_i - session[:time]
 
       redirect('/results')
     end

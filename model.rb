@@ -18,5 +18,10 @@ module Model
         redirect('/game')
     end
 
+    def database_copy()
+        db_copy = SQLite3::Database.new('db/projectzerodatabasecopy.db')
+        db_copy.results_as_hash = true
+        return db_copy
+    end
 
 end

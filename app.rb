@@ -12,11 +12,13 @@ include Model
 
 configure do
     enable :sessions
+
 end
 
 
 before do
     @db = database()
+    @db_copy = database_copy()
 end
 
 error 404 do
@@ -33,7 +35,6 @@ get '/game' do
   students = @db.execute("SELECT * from TE4")
 
   correct_student = students.shuffle.first
-  puts correct_student
   incorrect_students = (students - [correct_student]).sample(2)
   options = ([correct_student] + incorrect_students).shuffle
     @attempts = session[:attempts]
@@ -64,7 +65,6 @@ post '/answer' do
         end
     session[:attempts_real] += 1
     if students.length == session[:attempts_real]
-        puts "#{session[:time]}" + "TIME TIME"
 
       session[:time] = Time.now.to_i - session[:time]
 

@@ -30,8 +30,6 @@ get('/') do
 end
 
 get '/game' do
-    puts session[:attempts]
-    puts session[:score]
   students = @db.execute("SELECT * from TE4")
 
   correct_student = students.shuffle.first
@@ -80,4 +78,9 @@ get '/results' do
   @attempts = session[:attempts]
   @score = session[:score]
   slim :results
+end
+
+get '/restart' do
+  session.clear
+  redirect '/game'
 end

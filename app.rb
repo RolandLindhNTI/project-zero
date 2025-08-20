@@ -85,5 +85,5 @@ end
 get '/restart' do
   session.clear
   @db.execute("INSERT INTO game_class SELECT * FROM TE4")
-  #redirect '/game'
+  redirect '/game'
 end

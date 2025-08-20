@@ -58,15 +58,12 @@ post '/answer' do
             if correct_id == id 
                 if  session[:score] < session[:attempts]
                     session[:score] += 1
-                    puts "#{session[:time]}" + "TIME TIME"
                 end
             end
         end
     if session[:score] >= session[:attempts]
-        puts "#{session[:time]}" + "TIME TIME"
 
       session[:time] = Time.now.to_i - session[:time]
-      puts "#{session[:time]}" + "TIME TIME 2"
 
       redirect '/results'
     end
@@ -74,7 +71,6 @@ post '/answer' do
 end
 
 get '/results' do
-  puts "#{session[:time]}" + "TIME TIME"
   @time = session[:time].to_i
   @attempts = session[:attempts]
   @score = session[:score]

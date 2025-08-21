@@ -17,10 +17,11 @@ html lang="en"
         section id="picture_holder"
             a href="http://localhost:4567/game" Spela!
         
-        - @show_leaderboard.each do |person|
-            h2 #{person["namn"]}        
-            h2 #{person["score"]}        
-            h2 #{person["time"]}        
+        section id="leaderboard_holder"
+            - @show_leaderboard.each do |person|
+                h2 #{person["namn"]}        
+                h2 #{person["score"]} 
+                h2 #{person["time"]} sekunder       
          
                                                           
                   

@@ -26,7 +26,7 @@ error 404 do
 end
 
 get('/') do
-  @show_leaderboard = @db.execute("SELECT * FROM leaderboard")
+  @show_leaderboard = @db.execute("SELECT * FROM leaderboard ORDER BY score DESC, time ASC LIMIT 10")
   slim(:index)
 end
 
@@ -108,7 +108,7 @@ get '/restart' do
 
   @db.execute("DELETE FROM game_class")
   @db.execute("INSERT INTO game_class SELECT * FROM TE4")
-  
+
   redirect '/'
 end
 

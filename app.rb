@@ -26,7 +26,9 @@ error 404 do
 end
 
 get('/') do
-  @show_leaderboard = @db.execute("SELECT * FROM leaderboard ORDER BY score DESC, time ASC LIMIT 10")
+  @show_normal_leaderboard = @db.execute("SELECT * FROM leaderboard_normal ORDER BY score DESC, time ASC LIMIT 10")
+  @show_hard_leaderboard = @db.execute("SELECT * FROM leaderboard_hard ORDER BY score DESC, time ASC LIMIT 10")
+
   slim(:index)
 end
 
@@ -76,14 +78,13 @@ post '/answer' do
     students = @db.execute("SELECT * from game_class")
 
     id = params[:id]
-    puts id
-    puts id
-    puts id
-    puts id
-    puts id
-    puts id
     correct_id = params[:correct_id]
     correct_name = params[:namn]
+    if session[:difficulty] == :normal
+      id = id.to_i
+      correct_id = correct_id.to_i
+    end
+    puts id
 
     if session[:attempts].nil? && session[:score].nil?
         session[:attempts] = students.length
@@ -98,8 +99,10 @@ post '/answer' do
           end
 
         
-        elsif id.class == String && session[:score] < session[:attempts] && id.downcase == correct_name.downcase
+        elsif id.class == String && session[:score] < session[:attempts]
+          if id.downcase == correct_name.downcase
             session[:score] += 1
+          end
         end
     end
 
@@ -130,7 +133,7 @@ post '/results' do
   @time = session[:time].to_i
   @attempts = session[:attempts]
   @score = session[:score]
-  @db.execute("INSERT INTO leaderboard (namn,score,attempts,time) VALUES (?,?,?,?)", [name,@score,@attempts,@time])
+  @db.execute("INSERT INTO leaderboard_"+"#{session["difficulty"]}"" (namn,score,attempts,time) VALUES (?,?,?,?)", [name,@score,@attempts,@time])
 
   redirect '/restart'
 end

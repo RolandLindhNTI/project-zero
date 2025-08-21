@@ -30,7 +30,7 @@ html lang="en"
                             th Poäng
                             th Tid
                     tbody
-                        - @show_leaderboard.each do |person|
+                        - @show_normal_leaderboard.each do |person|
                             tr
                                 td #{person["namn"]} 
                                 td #{person["score"]} / #{person["attempts"]}  
@@ -47,7 +47,7 @@ html lang="en"
                             th Poäng
                             th Tid
                     tbody
-                        - @show_leaderboard.each do |person|
+                        - @show_hard_leaderboard.each do |person|
                             tr
                                 td #{person["namn"]} 
                                 td #{person["score"]} / #{person["attempts"]}  

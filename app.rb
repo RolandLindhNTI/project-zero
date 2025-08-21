@@ -58,8 +58,12 @@ get '/game/:difficulty' do
     while correct_student["bild"] == nil
       correct_student = students.shuffle.first
     end
-    return slim :game, locals:{correct_student: correct_student, options: options, difficulty: @difficulty}
 
+    @attempts = session[:attempts]
+    @score = session[:score]
+
+
+    return slim :game, locals:{correct_student: correct_student, students: students, difficulty: @difficulty}
   end
 
 end
@@ -71,8 +75,15 @@ post '/answer' do
 
     students = @db.execute("SELECT * from game_class")
 
-    id = params[:id].to_i
-    correct_id = params[:correct_id].to_i
+    id = params[:id]
+    puts id
+    puts id
+    puts id
+    puts id
+    puts id
+    puts id
+    correct_id = params[:correct_id]
+    correct_name = params[:namn]
 
     if session[:attempts].nil? && session[:score].nil?
         session[:attempts] = students.length
@@ -82,13 +93,14 @@ post '/answer' do
 
     if students.length >= session[:attempts_real]
         if correct_id == id 
-            if  session[:score] < session[:attempts]
-                session[:score] += 1
-            end
+          if  session[:score] < session[:attempts]
+              session[:score] += 1
+          end
 
-            
+        
+        elsif id.class == String && session[:score] < session[:attempts] && id.downcase == correct_name.downcase
+            session[:score] += 1
         end
-
     end
 
     session[:attempts_real] += 1
@@ -125,13 +137,8 @@ end
 
 get '/restart' do
   session.clear
-
   @db.execute("DELETE FROM game_class")
   @db.execute("INSERT INTO game_class SELECT * FROM TE4")
 
   redirect '/'
-end
-
-get '/leaderboard' do
-  slim :leaderboard
 end

@@ -17,24 +17,43 @@ html lang="en"
         section id="picture_holder"
             a href="http://localhost:4567/game" Spela!
         
-        section id="leaderboard_holder"
-            table 
-                thead
-                    tr
-                        th Namn
-                        th Poäng
-                        th Tid
-                tbody
-                    - @show_leaderboard.each do |person|
+        section id="leaderboards"
+            section id="leaderboard_holder"
+                h2 Topplista
+                p Här kan du se de bästa resultat!
+                br
+                table 
+                    thead
                         tr
-                            td #{person["namn"]} 
-                            td #{person["score"]} 
-                            td #{person["time"]} sek       
-                
-            - @show_leaderboard.each do |person|
-                h2 #{person["namn"]}        
-                h2 #{person["score"]} #{person["attempts"]}
-                h2 #{person["time"]} sekunder       
+                            th Namn
+                            th Poäng
+                            th Tid
+                    tbody
+                        - @show_leaderboard.each do |person|
+                            tr
+                                td #{person["namn"]} 
+                                td #{person["score"]} / #{person["attempts"]}  
+                                td #{person["time"]} sek   
+
+            section id="leaderboard2_holder"
+                h2 Topplista Hard Mode!!
+                p Här kan du se de bästa resultat!
+                br
+                table 
+                    thead
+                        tr
+                            th Namn
+                            th Poäng
+                            th Tid
+                    tbody
+                        - @show_leaderboard.each do |person|
+                            tr
+                                td #{person["namn"]} 
+                                td #{person["score"]} / #{person["attempts"]}  
+                                td #{person["time"]} sek   
+        section id="footer"
+            p TE4 &copy; Charles, Emanuel, Filip & Roland 2025
+        
          
                                                           
                   

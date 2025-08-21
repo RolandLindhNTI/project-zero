@@ -33,7 +33,6 @@ end
 
 get '/game' do
   students = @db.execute("SELECT * from TE4")
-
   correct_student = students.shuffle.first
   incorrect_students = (students - [correct_student]).sample(2)
   options = ([correct_student] + incorrect_students).shuffle
@@ -45,6 +44,8 @@ end
 post '/answer' do
     if session[:time] == nil
       session[:time] = Time.now.to_i
+       copy = @db.execute("SELECT * from game_class INNER JOIN TE4")  
+       puts copy
     end
     students = @db.execute("SELECT * from TE4")
     id = params[:id].to_i

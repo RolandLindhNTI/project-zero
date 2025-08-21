@@ -30,18 +30,32 @@ get('/') do
   slim(:index)
 end
 
-get '/game' do
-  students = @db.execute("SELECT * from game_class")
+get '/game/:difficulty' do
+  difficulty = params[:difficulty].to_sym
+  if difficulty == :normal
+    p "INNE I IF SATS"
+    students = @db.execute("SELECT * from game_class")
 
-  correct_student = students.shuffle.first
-  while correct_student["bild"] == nil
-     correct_student = students.shuffle.first
+    correct_student = students.shuffle.first
+    while correct_student["bild"] == nil
+      correct_student = students.shuffle.first
+    end
+    incorrect_students = (students - [correct_student]).sample(2)
+    options = ([correct_student] + incorrect_students).shuffle
+      @attempts = session[:attempts]
+      @score = session[:score]
+    slim :game, locals:{correct_student: correct_student, options: options, difficulty: difficulty}
   end
-  incorrect_students = (students - [correct_student]).sample(2)
-  options = ([correct_student] + incorrect_students).shuffle
-    @attempts = session[:attempts]
-    @score = session[:score]
-  slim :game, locals:{correct_student: correct_student, options: options}
+
+  if difficulty == :hard
+    students = @db.execute("SELECT * from game_class")
+
+    correct_student = students.shuffle.first
+    while correct_student["bild"] == nil
+      correct_student = students.shuffle.first
+    end
+  end
+
 end
 
 post '/answer' do

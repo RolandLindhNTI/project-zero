@@ -14,7 +14,7 @@ html lang="en"
             
 
        
-             
+        
         section id="game_holder"
             section id="game_info"
                 h2 Vem är vem?
@@ -22,11 +22,19 @@ html lang="en"
            
             img src="/img/#{correct_student["bild"]}" alt=""
 
-            section id="button_holder"
-                form id="buttons" action="/answer" method="post"
-                    input type="hidden" value="#{correct_student["id"]}" name="correct_id"
-                    - options.each do |people|
-                        button type="submit" name="id" value="#{people["id"]}" #{people["namn"]}
+            - if difficulty == :normal
+                section id="button_holder"
+                    form id="buttons" action="/answer" method="post"
+                        input type="hidden" value="#{correct_student["id"]}" name="correct_id"
+                        - options.each do |people|
+                            button type="submit" name="id" value="#{people["id"]}" #{people["namn"]}
+
+            - if difficulty == :hard
+                form action="/answer" method="post"
+                    input type="hidden" balue="#{correct_student["id"]}" name="correct_id"
+                    input name="namn" placeholder="Skriv här" type="text"
+                    input type="submit" value="submit"
+
                 
 
 

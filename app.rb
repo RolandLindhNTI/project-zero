@@ -31,8 +31,10 @@ get('/') do
 end
 
 get '/game/:difficulty' do
-  difficulty = params[:difficulty].to_sym
-  if difficulty == :normal
+  @difficulty = params[:difficulty].to_sym
+  session[:difficulty] = @difficulty
+
+  if @difficulty == :normal
     p "INNE I IF SATS"
     students = @db.execute("SELECT * from game_class")
 
@@ -42,18 +44,22 @@ get '/game/:difficulty' do
     end
     incorrect_students = (students - [correct_student]).sample(2)
     options = ([correct_student] + incorrect_students).shuffle
-      @attempts = session[:attempts]
-      @score = session[:score]
-    slim :game, locals:{correct_student: correct_student, options: options, difficulty: difficulty}
+    @attempts = session[:attempts]
+    @score = session[:score]
+
+    return slim :game, locals:{correct_student: correct_student, options: options, difficulty: @difficulty}
+  
   end
 
-  if difficulty == :hard
+  if @difficulty == :hard
     students = @db.execute("SELECT * from game_class")
 
     correct_student = students.shuffle.first
     while correct_student["bild"] == nil
       correct_student = students.shuffle.first
     end
+    return slim :game, locals:{correct_student: correct_student, options: options, difficulty: @difficulty}
+
   end
 
 end
@@ -95,7 +101,7 @@ post '/answer' do
       redirect('/results')
     end
 
-    redirect('/game')
+    redirect("/game/#{session[:difficulty]}")
 end
 
 get '/results' do

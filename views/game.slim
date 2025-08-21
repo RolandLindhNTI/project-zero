@@ -21,19 +21,19 @@ html lang="en"
                 h2 #{@score} / #{@attempts} 
            
             img src="/img/#{correct_student["bild"]}" alt=""
+        - if @difficulty == :normal
+            section id="button_holder"
+                form id="buttons" action="/answer" method="post"
+                    input type="hidden" value="#{correct_student["id"]}" name="correct_id"
+                    - options.each do |people|
+                        button type="submit" name="id" value="#{people["id"]}" #{people["namn"]}
 
-            - if difficulty == :normal
-                section id="button_holder"
-                    form id="buttons" action="/answer" method="post"
-                        input type="hidden" value="#{correct_student["id"]}" name="correct_id"
-                        - options.each do |people|
-                            button type="submit" name="id" value="#{people["id"]}" #{people["namn"]}
-
-            - if difficulty == :hard
-                form action="/answer" method="post"
-                    input type="hidden" balue="#{correct_student["id"]}" name="correct_id"
-                    input name="namn" placeholder="Skriv här" type="text"
-                    input type="submit" value="submit"
+        - if @difficulty == :hard
+            - p "INNE I HARD SATS"
+            form action="/answer" method="post"
+                input type="hidden" balue="#{correct_student["id"]}" name="correct_id"
+                input name="namn" placeholder="Skriv här" type="text"
+                input type="submit" value="submit"
 
                 
 

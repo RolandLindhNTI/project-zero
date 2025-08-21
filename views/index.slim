@@ -20,7 +20,7 @@ html lang="en"
         section id="leaderboard_holder"
             - @show_leaderboard.each do |person|
                 h2 #{person["namn"]}        
-                h2 #{person["score"]} 
+                h2 #{person["score"]} #{person["attempts"]}
                 h2 #{person["time"]} sekunder       
          
                                                           

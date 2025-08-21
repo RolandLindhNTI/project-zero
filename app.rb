@@ -98,7 +98,7 @@ post '/results' do
   @time = session[:time].to_i
   @attempts = session[:attempts]
   @score = session[:score]
-  @db.execute("INSERT INTO leaderboard (namn,score,time) VALUES (?,?,?)", [name,@score,@time])
+  @db.execute("INSERT INTO leaderboard (namn,score,attempts,time) VALUES (?,?,?,?)", [name,@score,@attempts,@time])
 
   redirect '/restart'
 end

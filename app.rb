@@ -26,7 +26,7 @@ error 404 do
 end
 
 get('/') do
-  
+  @show_leaderboard = @db.execute("SELECT * FROM leaderboard")
   slim(:index)
 end
 
@@ -84,9 +84,22 @@ get '/results' do
   slim :results
 end
 
+post '/results' do
+  name = params[:player_name]
+  @time = session[:time].to_i
+  @attempts = session[:attempts]
+  @score = session[:score]
+  @db.execute("INSERT INTO leaderboard (namn,score,time) VALUES (?,?,?)", [name,@score,@time])
+  redirect '/restart'
+end
+
 get '/restart' do
   session.clear
   @db.execute("DELETE FROM game_class")
   @db.execute("INSERT INTO game_class SELECT * FROM TE4")
   redirect '/'
+end
+
+get '/leaderboard' do
+  slim :leaderboard
 end

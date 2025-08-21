@@ -12,11 +12,15 @@ html lang="en"
             a href="http://localhost:4567" 
                 h1 TE4-Memory! 
             p Vem är vem?
-            p Logga in!
+            a href="http://localhost:4567/login" Logga in!
         
         section id="picture_holder"
             a href="http://localhost:4567/game" Spela!
-
+        
+        - @show_leaderboard.each do |person|
+            h2 #{person["namn"]}        
+            h2 #{person["score"]}        
+            h2 #{person["time"]}        
          
                                                           
                   

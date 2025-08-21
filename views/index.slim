@@ -18,11 +18,19 @@ html lang="en"
             a href="http://localhost:4567/game" Spela!
         
         section id="leaderboard_holder"
-            - @show_leaderboard.each do |person|
-                h2 #{person["namn"]}        
-                h2 #{person["score"]} 
-                h2 #{person["time"]} sekunder       
-         
+            table 
+                thead
+                    tr
+                        th Namn
+                        th Poäng
+                        th Tid
+                tbody
+                    - @show_leaderboard.each do |person|
+                        tr
+                            td #{person["namn"]} 
+                            td #{person["score"]} 
+                            td #{person["time"]} sek       
+                
                                                           
                   
                                        

@@ -11,14 +11,12 @@ include Model
 
 
 configure do
-    enable :sessions
-
+  enable :sessions
 end
 
 
 before do
     @db = database()
-    @db_copy = database_copy()
 end
 
 error 404 do
@@ -27,13 +25,18 @@ error 404 do
 end
 
 get('/') do
-    @result = @db.execute("SELECT * FROM TE4")
-    slim(:index)
+  @db.execute("DELETE FROM game_class")
+  @db.execute("INSERT INTO game_class SELECT * FROM TE4")
+  slim(:index)
 end
 
 get '/game' do
-  students = @db.execute("SELECT * from TE4")
+  students = @db.execute("SELECT * from game_class")
+
   correct_student = students.shuffle.first
+  while correct_student["bild"] == nil
+     correct_student = students.shuffle.first
+  end
   incorrect_students = (students - [correct_student]).sample(2)
   options = ([correct_student] + incorrect_students).shuffle
     @attempts = session[:attempts]
@@ -47,7 +50,7 @@ post '/answer' do
        copy = @db.execute("SELECT * from game_class INNER JOIN TE4")  
        puts copy
     end
-    students = @db.execute("SELECT * from TE4")
+    students = @db.execute("SELECT * from game_class")
     id = params[:id].to_i
     correct_id = params[:correct_id].to_i
     if session[:attempts].nil? && session[:score].nil?
@@ -65,9 +68,10 @@ post '/answer' do
 
         end
     session[:attempts_real] += 1
+    @db.execute("UPDATE game_class SET bild = NULL WHERE id = ?", correct_id)
     if students.length == session[:attempts_real]
 
-      session[:time] = Time.now.to_i - session[:time]
+        session[:time] = Time.now.to_i - session[:time]
 
       redirect('/results')
     end
@@ -83,5 +87,5 @@ end
 
 get '/restart' do
   session.clear
-  redirect '/game'
+  redirect '/'
 end

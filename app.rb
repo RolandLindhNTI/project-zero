@@ -26,7 +26,8 @@ error 404 do
 end
 
 get('/') do
-    slim(:index)
+  
+  slim(:index)
 end
 
 get '/game' do
@@ -85,6 +86,7 @@ end
 
 get '/restart' do
   session.clear
+  @db.execute("DELETE FROM game_class")
   @db.execute("INSERT INTO game_class SELECT * FROM TE4")
-  redirect '/game'
+  redirect '/'
 end

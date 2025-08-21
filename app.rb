@@ -61,6 +61,7 @@ post '/answer' do
                     session[:score] += 1
                 end
 
+                
             end
 
         end

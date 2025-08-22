@@ -142,14 +142,22 @@ footer {
 
 
 #skicka_knapp, #play_button, #ladda_upp_knapp {
-    background-color: rgb(132, 160, 238);
-    border: none;
-    border-radius: 3px;
+    border: rgb(132, 160, 238) 2px solid;
+    color: rgb(132, 160, 238);
+    border-radius: 5px;
     padding: 0.5em;
-    color: white;
+
     font-size: medium;
     cursor: pointer;
     margin: 10px;
+    background-color: transparent;
+
+}
+
+#skicka_knapp:hover, #play_button:hover, #ladda_upp_knapp:hover {
+    background-color: rgb(132, 160, 238);
+    color: white;
+
 }
 
 #results_holder {
@@ -177,4 +185,9 @@ footer {
 
 #spacer {
     flex: 1;
+}
+
+#skicka_knapp {
+    padding: 0.1rem;
+    font-size: small;
 }

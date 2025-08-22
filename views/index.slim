@@ -15,17 +15,20 @@ html lang="en"
             a href="http://localhost:4567/login" Logga in!
         
         section id="picture_holder"
+            form action="/select_class" method="post"
+                select name="class"
+                    - @classes.each do |klass|
+                        - namn = klass["name"]                    
+                        option value="#{klass["name"]}" name="chosen_class" #{namn[6..-1]}
+                    input id="skicka_knapp" type="submit" value="Välj klass"
+            
             - if @chosen_class
                 a id="play_button" href="http://localhost:4567/game/normal" Spela!
                 a id="play_button" href="http://localhost:4567/game/hard" Spela Svårt LÄGEEE!
                 a id="play_button" href="http://localhost:4567/game/extreme" Spela EXTREMT!
-
-        form action="/select_class" method="post"
-            select name="class"
-                - @classes.each do |klass|
-                    - namn = klass["name"]                    
-                    option value="#{klass["name"]}" name="chosen_class" #{namn[6..-1]}
-                input type="submit" value="Välj klass"
+            - else 
+                p Välj en klass för att börja spela!
+        
 
         
         section id="leaderboards"

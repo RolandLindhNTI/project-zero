@@ -15,9 +15,9 @@ html lang="en"
             a href="http://localhost:4567/login" Logga in!
         
         section id="picture_holder"
-            a id="play_button" href="http://localhost:4567/game/normal" Spela!
-                                      
-            a id="play_button" href="http://localhost:4567/game/hard" Spela Svårt LÄGEEE!
+            - if @chosen_class
+                a id="play_button" href="http://localhost:4567/game/normal" Spela!
+                a id="play_button" href="http://localhost:4567/game/hard" Spela Svårt LÄGEEE!
 
         form action="/select_class" method="post"
             select name="class"
@@ -70,4 +70,4 @@ html lang="en"
                                                           
                   
                                        
-script src="js/main.js"                                                                                                            
+script src="js/main.js"

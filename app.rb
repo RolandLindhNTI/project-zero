@@ -20,7 +20,7 @@ before do
 end
 
 error 404 do
-    flash[:notice] = "Route does not exist"
+    flash[:notice] = "Route does to exist"
     redirect('/')
 end
 
@@ -28,12 +28,14 @@ get('/') do
   @show_normal_leaderboard = @db.execute("SELECT * FROM leaderboard_normal ORDER BY score DESC, time ASC LIMIT 10")
   @show_hard_leaderboard = @db.execute("SELECT * FROM leaderboard_hard ORDER BY score DESC, time ASC LIMIT 10")
   @classes = @db.execute("SELECT name FROM sqlite_sequence WHERE name LIKE 'class_%'")
+  @chosen_class = session[:chosen_class]
   slim(:index)
 end
 
 post '/select_class' do
   @chosen_class = params[:class]
   session[:chosen_class] = @chosen_class
+  @db.execute("DELETE FROM game_class") # <-- Add this line
   @db.execute("INSERT INTO game_class SELECT * FROM #{@chosen_class}")
   redirect '/'
 end

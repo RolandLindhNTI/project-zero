@@ -71,10 +71,26 @@ get ('/game/:difficulty') do
     @attempts = session[:attempts]
     @score = session[:score]
 
+  
+
 
     return slim :game, locals:{correct_student: correct_student, students: students, difficulty: @difficulty}
   end
 
+
+  if @difficulty == :extreme
+    students = @db.execute("SELECT * from game_class")
+
+    correct_student = students.shuffle.first
+    while correct_student["bild"] == nil
+      correct_student = students.shuffle.first
+    end
+
+    @attempts = session[:attempts]
+    @score = session[:score]
+
+    return slim :game, locals:{correct_student: correct_student, students: students, difficulty: @difficulty}
+  end
 end
 
 post '/answer' do
@@ -87,6 +103,7 @@ post '/answer' do
     id = params[:id]
     correct_id = params[:correct_id]
     correct_name = params[:namn]
+    correct_efternamn = params[:efternamn]
     if session[:difficulty] == :normal
       id = id.to_i
       correct_id = correct_id.to_i
@@ -106,8 +123,13 @@ post '/answer' do
           end
 
         
-        elsif id.class == String && session[:score] < session[:attempts]
+        elsif id.class == String && session[:score] < session[:attempts] && correct_efternamn == nil
           if id.downcase == correct_name.downcase
+            session[:score] += 1
+          end
+
+        elsif id.class == String && session[:score] < session[:attempts] && correct_efternamn != nil
+          if id.downcase == correct_name.downcase + " " + correct_efternamn.downcase
             session[:score] += 1
           end
         end

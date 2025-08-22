@@ -20,7 +20,7 @@ html lang="en"
                 h2 Vem är vem?
                 h2 #{@score} / #{@attempts} 
            
-            img src="/img/#{correct_student["bild"]}" alt=""
+            img src="/img/#{correct_student["bild"]}" alt="" id="game_image"
             - if @difficulty == :normal
                 section id="button_holder"
                     form id="buttons" action="/answer" method="post"
@@ -33,7 +33,7 @@ html lang="en"
                     input type="hidden" value="#{correct_student["namn"]}" name="namn"
                     input type="hidden" value="#{correct_student["id"]}" name="correct_id"
                     input name="id" placeholder="Skriv namnet här" type="text" 
-                    input id="skicka_knapp" type="submit"
+                    input id="skicka_knapp" type="submit" class="fuckassknapp"
 
             - if @difficulty == :extreme
                 form action="/answer" method="post"
@@ -41,7 +41,7 @@ html lang="en"
                     input type="hidden" value="#{correct_student["id"]}" name="correct_id"
                     input type="hidden" value="#{correct_student["efternamn"]}" name="efternamn"
                     input id="extreme_input" type="text" placeholder="Skriv förnamn och efternamn här" name="id"
-                    input id="extreme_knapp" type="submit"
+                    input id="extreme_knapp" type="submit" class="fuckassknapp"
         section id="spacer"
             br
         

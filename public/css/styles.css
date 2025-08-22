@@ -6,7 +6,7 @@
 button {
   
     
-    margin: 20px;
+    margin: 10px;
 }
 
 a{
@@ -15,8 +15,8 @@ a{
 }
 
 img {
-    height: 20%;
-    width: 20%;
+    height: 50%;
+    width: 50%;
 
 }
 
@@ -26,8 +26,8 @@ body {
     margin: 0;
     padding: 0px;
     display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header, footer{
@@ -53,24 +53,55 @@ h1
 
 #game_info {
     display: flex;
+    flex-direction: row;
+    align-items: row;
+    justify-content: space-evenly;
+    background-color: rgb(255, 255, 255);
+    border-radius: 30px;
+    margin: 0px;
+}
+
+#game_inforesults {
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: rgb(255, 255, 255);
     border-radius: 30px;
-    margin: 20px;
+    margin: 0px;
+    padding: 20px;
 }
 
-#game_holder {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: space-around;
+#game_holderresults {
+    display: grid;
+    align-items: row;
+    flex-wrap: row;
+    justify-content:space-evenly;
     background-color: rgb(255, 255, 255);
     border-radius: 30px;
     margin: 20px;
 
 }
+
+#game_holder {
+    display: grid;
+    align-items: row;
+    flex-wrap: row;
+    justify-content:space-evenly;
+    background-color: rgb(255, 255, 255);
+    border-radius: 30px;
+    margin: 20px;
+
+}
+
+#game_image {
+    height: 400px;
+    width: 350px;
+    border-radius: 30px;
+    margin: 20px;
+    border: 2px solid rgb(132, 160, 238);
+}
+
 
 #picture_holder {
     height: 200px;
@@ -85,8 +116,37 @@ h1
 }
 
 #button_holder {
-   width: 13%;
+   width: 100%;
+   
 }
+
+#skicka_knapp {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(132, 160, 238);
+    color: white;
+    border-radius: 100px;
+    padding: 1em;
+    font-size: large;
+    cursor: pointer;
+}
+
+#extreme_knapp {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(132, 160, 238);
+    color: white;
+    border-radius: 100px;
+    padding: 1em;
+    font-size: large;
+    cursor: pointer;
+}
+
+
 
 #buttons {
     color: white;
@@ -94,7 +154,10 @@ h1
     flex-direction: column;
     text-decoration-style: none;
     text-decoration: white;
-    flex-wrap: wrap
+    flex-wrap: wrap;
+    border: none;
+    border-radius: 100px;
+
 }
 
 #buttons button,  #restart_button {
@@ -103,7 +166,7 @@ h1
     background-color: rgb(132, 160, 238);
     color: white;
     border: none;
-    border-radius: 3px;
+    border-radius: 100px;
      cursor: pointer;
     padding: 1em;
 }
@@ -140,19 +203,40 @@ footer {
     
 }
 
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+
+
 
 #skicka_knapp, #play_button, #ladda_upp_knapp, #extreme_knapp {
     border: rgb(132, 160, 238) 2px solid;
     color: rgb(132, 160, 238);
     border-radius: 5px;
     padding: 0.5em;
-
     font-size: medium;
     cursor: pointer;
-    margin: 10px;
     background-color: transparent;
 
 }
+
+.fuckassknapp {
+        margin-bottom: 50px;
+        height: 40px;
+}
+
+.ending_info {
+    display: grid;
+    margin: 0px;
+    padding: 0px;
+    align-items: column;
+    justify-content: center;
+}
+
 
 #skicka_knapp:hover, #play_button:hover, #ladda_upp_knapp:hover {
     background-color: rgb(132, 160, 238);

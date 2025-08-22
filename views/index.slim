@@ -18,6 +18,14 @@ html lang="en"
             a id="play_button" href="http://localhost:4567/game/normal" Spela!
                                       
             a id="play_button" href="http://localhost:4567/game/hard" Spela Svårt LÄGEEE!
+
+        form action="/select_class" method="post"
+            select name="class"
+                - @classes.each do |klass|
+                    - namn = klass["name"]                    
+                    option value="#{klass["name"]}" name="chosen_class" #{namn[6..-1]}
+                input type="submit" value="Välj klass"
+
         
         section id="leaderboards"
             section id="leaderboard_holder"

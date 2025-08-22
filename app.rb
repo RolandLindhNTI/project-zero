@@ -12,7 +12,6 @@ include Model
 
 configure do
     enable :sessions
-
 end
 
 
@@ -28,18 +27,24 @@ end
 get('/') do
   @show_normal_leaderboard = @db.execute("SELECT * FROM leaderboard_normal ORDER BY score DESC, time ASC LIMIT 10")
   @show_hard_leaderboard = @db.execute("SELECT * FROM leaderboard_hard ORDER BY score DESC, time ASC LIMIT 10")
-
+  @classes = @db.execute("SELECT name FROM sqlite_sequence WHERE name LIKE 'class_%'")
   slim(:index)
 end
 
-get '/game/:difficulty' do
+post '/select_class' do
+  @chosen_class = params[:class]
+  session[:chosen_class] = @chosen_class
+  @db.execute("INSERT INTO game_class SELECT * FROM #{@chosen_class}")
+  redirect '/'
+end
+
+get ('/game/:difficulty') do
   @difficulty = params[:difficulty].to_sym
   session[:difficulty] = @difficulty
-
+  
   if @difficulty == :normal
-    p "INNE I IF SATS"
     students = @db.execute("SELECT * from game_class")
-
+    
     correct_student = students.shuffle.first
     while correct_student["bild"] == nil
       correct_student = students.shuffle.first
@@ -48,11 +53,11 @@ get '/game/:difficulty' do
     options = ([correct_student] + incorrect_students).shuffle
     @attempts = session[:attempts]
     @score = session[:score]
-
+    
     return slim :game, locals:{correct_student: correct_student, options: options, difficulty: @difficulty}
-  
+    
   end
-
+  
   if @difficulty == :hard
     students = @db.execute("SELECT * from game_class")
 
@@ -141,7 +146,6 @@ end
 get '/restart' do
   session.clear
   @db.execute("DELETE FROM game_class")
-  @db.execute("INSERT INTO game_class SELECT * FROM TE4")
 
   redirect '/'
 end

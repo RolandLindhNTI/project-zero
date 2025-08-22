@@ -35,7 +35,7 @@ end
 post '/select_class' do
   @chosen_class = params[:class]
   session[:chosen_class] = @chosen_class
-  @db.execute("DELETE FROM game_class") # <-- Add this line
+  @db.execute("DELETE FROM game_class")
   @db.execute("INSERT INTO game_class SELECT * FROM #{@chosen_class}")
   redirect '/'
 end

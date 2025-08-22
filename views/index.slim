@@ -64,7 +64,25 @@ html lang="en"
                             tr
                                 td #{person["namn"]} 
                                 td #{person["score"]} / #{person["attempts"]}  
+                                td #{person["time"]} sek 
+
+            section id="leaderboard3_holder"
+                h2 Topplista Extreme!!
+                p Här kan du se de 10 bästa resultat!
+                br
+                table 
+                    thead
+                        tr
+                            th Namn
+                            th Poäng
+                            th Tid
+                    tbody
+                        - @show_extreme_leaderboard.each do |person|
+                            tr
+                                td #{person["namn"]} 
+                                td #{person["score"]} / #{person["attempts"]}  
                                 td #{person["time"]} sek   
+
         section id="spacer"
             br
         footer

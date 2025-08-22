@@ -27,6 +27,7 @@ end
 get('/') do
   @show_normal_leaderboard = @db.execute("SELECT * FROM leaderboard_normal ORDER BY score DESC, time ASC LIMIT 10")
   @show_hard_leaderboard = @db.execute("SELECT * FROM leaderboard_hard ORDER BY score DESC, time ASC LIMIT 10")
+  @show_extreme_leaderboard = @db.execute("SELECT * FROM leaderboard_extreme ORDER BY score DESC, time ASC LIMIT 10")
   @classes = @db.execute("SELECT name FROM sqlite_sequence WHERE name LIKE 'class_%'")
   @chosen_class = session[:chosen_class]
   slim(:index)

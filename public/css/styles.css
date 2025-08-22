@@ -116,7 +116,7 @@ h1
     margin: 10px;
 }
 
-#leaderboard_holder, #leaderboard2_holder {
+#leaderboard_holder, #leaderboard2_holder, #leaderboard3_holder {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -141,7 +141,7 @@ footer {
 }
 
 
-#skicka_knapp, #play_button, #ladda_upp_knapp {
+#skicka_knapp, #play_button, #ladda_upp_knapp, #extreme_knapp {
     border: rgb(132, 160, 238) 2px solid;
     color: rgb(132, 160, 238);
     border-radius: 5px;
@@ -187,7 +187,11 @@ footer {
     flex: 1;
 }
 
-#skicka_knapp {
+#skicka_knapp, #extreme_knapp {
     padding: 0.1rem;
     font-size: small;
+}
+
+#extreme_input {
+    min-width: 250px;
 }

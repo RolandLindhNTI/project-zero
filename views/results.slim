@@ -24,13 +24,18 @@ html lang="en"
             button id="restart_button"
                 a href="http://localhost:4567/restart" Spela igen!
         
-        form action="/results" method="post"
-            input type="text" name="player_name" placeholder="NAMN"
-            input type="submit" value="upload"
+        section id="results_holder"
+            form action="/results" method="post"
+                p Ladda upp ditt resultat!
+                input type="text" name="player_name" placeholder="Ditt namn"
+                input id="ladda_upp_knapp" type="submit" value="Ladda upp"
 
             
-                
-
+        section id="spacer"
+            br     
+        footer
+            p TE4 &copy; Charles, Emanuel, Filip & Roland 2025
+        
 
             
 

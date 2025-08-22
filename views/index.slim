@@ -15,13 +15,14 @@ html lang="en"
             a href="http://localhost:4567/login" Logga in!
         
         section id="picture_holder"
-            a href="http://localhost:4567/game/normal" Spela!
-            a href="http://localhost:4567/game/hard" Spela Svårt LÄGEEE!
+            a id="play_button" href="http://localhost:4567/game/normal" Spela!
+                                      
+            a id="play_button" href="http://localhost:4567/game/hard" Spela Svårt LÄGEEE!
         
         section id="leaderboards"
             section id="leaderboard_holder"
                 h2 Topplista
-                p Här kan du se de bästa resultat!
+                p Här kan du se de 10 bästa resultat!
                 br
                 table 
                     thead
@@ -38,7 +39,7 @@ html lang="en"
 
             section id="leaderboard2_holder"
                 h2 Topplista Hard Mode!!
-                p Här kan du se de bästa resultat!
+                p Här kan du se de 10 bästa resultat!
                 br
                 table 
                     thead
@@ -52,7 +53,9 @@ html lang="en"
                                 td #{person["namn"]} 
                                 td #{person["score"]} / #{person["attempts"]}  
                                 td #{person["time"]} sek   
-        section id="footer"
+        section id="spacer"
+            br
+        footer
             p TE4 &copy; Charles, Emanuel, Filip & Roland 2025
         
          

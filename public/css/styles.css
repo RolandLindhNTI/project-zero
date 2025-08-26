@@ -4,14 +4,14 @@
 }
 
 button {
-  
-    
+
     margin: 10px;
 }
 
 .balright {
     display: flex;
     flex-wrap: wrap;
+    background-image: url(/img/ragebait.jpeg);
 
 }
 
@@ -35,7 +35,18 @@ button {
     margin: 10px;
     padding: 10px;
     background-color: white;
+    margin-top: 0px;
+    font-family: sans-serif;
+    background: linear-gradient(to right, #221426 0%, #A480F2 25%, #445EF2 50%, #A480F2 75%, #221426 100%);
+    background-color: #302244;
+    border: 5px solid transparent;
+    border-image: linear-gradient(to bottom right, #221426 0%, #A480F2 25%, #445EF2 50%, #A480F2 75%, #221426 100%);
+    border-image-slice: 1;
+    height: 200px;
+    margin: 20px auto;
+    width: 200px;
 }
+
 
 a{
     text-decoration: none;

@@ -168,6 +168,11 @@ post '/results' do
   redirect '/restart'
 end
 
+get '/facit' do
+  @students = @db.execute("SELECT * FROM game_class")
+  slim(:facit)
+end
+
 get '/restart' do
   session.clear
   @db.execute("DELETE FROM game_class")

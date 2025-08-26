@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+html lang="en"
+    head
+        meta charset="UTF-8"
+        meta name="viewport" content="width=device-width, initial-scale=1.0"
+        title Bob 
+        link rel="stylesheet" href="css/styles.css"
+    body
+        
+        header
+            
+            a href="http://localhost:4567" 
+                h1 TE4-Memory! 
+            a href="/facit"  Vem är vem?
+div class="balright"
+    - @students.each do |people|
+        div class="card_holder"
+            img src="/img/#{people["bild"]}" alt="" class="card_img"
+                h3 #{people["namn"]}
+                h3 #{people["efternamn"]}
+
+
+    

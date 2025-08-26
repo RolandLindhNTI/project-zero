@@ -9,6 +9,34 @@ button {
     margin: 10px;
 }
 
+.balright {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.card_img {
+    min-width: 240px;
+    min-height: 300px;
+}
+
+.card_holder {
+    align-items: center;
+    width: 300px;
+    height: 400px;
+    max-width: 300px;
+    max-height: 400px;
+    min-width: 300px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    border: 4px solid black;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    background-color: white;
+}
+
 a{
     text-decoration: none;
     color: inherit;
@@ -102,6 +130,13 @@ h1
     border: 2px solid rgb(132, 160, 238);
 }
 
+#game_image_card {
+    height: 500px;
+    width: 350px;
+    border-radius: 5px;
+    margin: 90px;
+    border: 100px solid rgb(186, 17, 212);
+}
 
 #picture_holder {
     height: 200px;

@@ -9,15 +9,10 @@ html lang="en"
         header
             a href="http://localhost:4567" 
                 h1 TE4-Memory!
-            
-            p Logga in!
-            
-
-       
-        
+                a href="/facit"  Vem är vem?
         section id="game_holder"
             section id="game_info"
-                h2 Vem är vem?
+                
                 h2 #{@score} / #{@attempts} 
            
             img src="/img/#{correct_student["bild"]}" alt="" id="game_image"
